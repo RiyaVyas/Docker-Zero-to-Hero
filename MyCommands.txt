@@ -1,0 +1,14 @@
+#To login to an Ec2 Instance for an Amazon Linux Machine
+ssh -i .\default-keypair.pem  ec2-user@51.20.185.109
+
+#Install docker
+sudo yum update
+sudo yum install docker
+
+#difference between ENTRYPOINT and CMD
+Both can be used to execute as your start command 
+ENTRYPOINT - This cannot be changed, cannot be overwritten
+CMD - This is configurable. 
+
+You can also merge these two if into a single command if you are fine with people overridding them
+
