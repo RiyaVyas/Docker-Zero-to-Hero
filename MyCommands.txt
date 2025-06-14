@@ -12,3 +12,24 @@ CMD - This is configurable.
 
 You can also merge these two if into a single command if you are fine with people overridding them
 
+#Command to start docker
+sudo systemctl start docker
+
+#Grant Access to your user to run docker commands
+To grant access to your user to run the docker command, you should add the user to the Docker Linux group. Docker group is create by default when docker is installed.
+
+sudo usermod -aG docker ubuntu
+sudo usermod -aG docker ec2-user
+
+#Docker commands
+docker ps #shows the running containers
+docker image #shows the built images
+docker build . #Builds image with the Dockerfile in that directory
+
+
+
+
+#Command to list all the conatiner the volume is being used by - 
+docker ps -a -q | while read cid; do
+  docker inspect "$cid" | grep -q 'riya' && echo "Volume used by container: $cid"
+done
