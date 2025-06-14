@@ -33,3 +33,124 @@ docker build . #Builds image with the Dockerfile in that directory
 docker ps -a -q | while read cid; do
   docker inspect "$cid" | grep -q 'riya' && echo "Volume used by container: $cid"
 done
+
+#remove all stopped containers
+docker container prune
+
+#Remove all unused images, networks, volumes, and containers
+docker system prune -a
+
+
+
+# ✅ List all Docker volumes
+docker volume ls
+
+# ✅ Inspect a specific volume
+docker volume inspect mydata
+
+# 🔄 Check which containers use a specific volume (mydata)
+docker ps -a -q | while read cid; do
+  docker inspect "$cid" | grep -q 'mydata' && echo "Volume used by container: $cid"
+done
+
+# 🧠 Show which volumes a specific container is using (by name)
+docker inspect -f '{{ .Name }} uses volume(s): {{ range .Mounts }}{{ .Name }} {{ end }}' <container_id>
+
+# 📂 Copy file from host to container
+docker cp ./localfile.txt <container_id>:/app/
+
+# 📂 Copy file from container to host
+docker cp <container_id>:/app/data.db ./backup.db
+
+# 🔄 Run a container with auto-restart policy (useful in production)
+docker run --restart unless-stopped myapp
+
+# 🧑‍💻 Attach shell into a running container (try sh or bash)
+docker exec -it <container_id> sh
+
+# 🧼 Remove all stopped containers
+docker container prune
+
+# 🧼 Remove all unused images, networks, volumes, and containers
+docker system prune -a
+
+# 📄 Show logs with timestamps
+docker logs -t <container_id>
+
+# 📄 Follow logs live
+docker logs -f <container_id>
+
+# 📊 Show container resource usage like CPU, memory
+docker stats
+
+# 🔐 Run container with environment variable
+docker run -e MY_ENV_VAR=value myapp
+
+# 🔐 Load env vars from .env file
+docker run --env-file .env myapp
+
+# 🌍 Map host port to container port
+docker run -p 8080:80 myapp
+
+# 🚀 Create and run a temporary container (auto-deletes after exit)
+docker run --rm -it ubuntu bash
+
+# 🌐 List all container IPs
+docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q)
+
+💎 Bonus & Advanced Docker Commands
+
+# 🔍 Show container’s entrypoint and command
+docker inspect --format='{{.Config.Entrypoint}} {{.Config.Cmd}}' <container_id>
+
+# 🔍 Show only container name and image
+docker ps --format "table {{.Names}}\t{{.Image}}"
+
+# 🔍 Find all containers using a specific image
+docker ps -a --filter ancestor=myapp:latest
+
+# 🔧 Attach to a running container's output (detach with Ctrl+P, Ctrl+Q)
+docker attach <container_id>
+
+# 🔧 Run one-time command inside a container
+docker exec <container_id> env
+
+# 🔧 Run a temporary, self-deleting container
+docker run --rm -it alpine sh
+
+# 🧹 List dangling (unused) images
+docker images -f "dangling=true"
+
+# 🧹 Remove all exited containers
+docker rm $(docker ps -a -f status=exited -q)
+
+# 🧹 Remove all unused volumes
+docker volume prune
+
+# 🧱 View Dockerfile build layers and sizes
+docker history myapp:latest
+
+# 📦 Export a container as tar file
+docker export <container_id> > container_backup.tar
+
+# 📦 Import a container from tar file
+cat container_backup.tar | docker import - myapp-restored
+
+# 🌐 Get a container's IP address
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_id>
+
+# 🌐 Ping one container from another
+docker exec -it <container_id> ping <other_container_name>
+
+# 🧪 Use networking test tool container (BusyBox or Netshoot)
+docker run --rm -it busybox
+# or
+docker run --rm -it nicolaka/netshoot
+
+# ⏱️ Benchmark how fast a container starts
+time docker run --rm hello-world
+
+# 💡 Alias repetitive commands (add to ~/.bashrc or ~/.zshrc)
+alias dps='docker ps --format "table {{.Names}}\\t{{.Status}}\\t{{.Image}}"'
+alias drm='docker rm $(docker ps -a -q)'
+alias dclean='docker system prune -a --volumes'
