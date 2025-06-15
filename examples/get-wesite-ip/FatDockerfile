@@ -1,0 +1,10 @@
+FROM ubuntu
+
+WORKDIR /apps
+
+RUN apt update && \
+         apt install -y python3
+
+COPY get-website-ip.py /apps/
+
+CMD ["python3", "get-website-ip.py"
