@@ -144,4 +144,25 @@ deleted: sha256:35581a5e0588d5e5b5a449d9b312512dc68256864b0eda108ee5525c51335fe8
 
 Total reclaimed space: 351.1MB
 
+###############################################################################################
+DEMO with Dockercompose
+###############################################################################################
 
+# command to start the docker infra 
+docker-compose -f docker-compose.yaml up -d
+![alt text](image.png)
+
+docker ps 
+
+
+# Key things to remember when working with docker compose
+- Docker compose will create its own network and connect all the containers with it
+- when you run docker-compose up, it will start both the containers together, if there is no depends_on contion in your yaml file. Hnece you might mixed logs for these. 
+- Even though you name your container under sevices in the yaml file, docker compose will give them a prefix(of the foldername where you are running this) and a suffix(of the number of instances it is running of that type, 1 for a single container)
+- Docker containers are ephemeral in nature (unless they are attached to a volume), meaning once a conatiner is deleted, the data stored in it will be lost. But if you simply stop a conatiner and start it again, the data will be available. 
+
+# docker compose commands
+docker-compose -f docker-compose.yaml up -d
+docker-compose -f docker-compose.yaml down # stops and removes the containers
+docker-compose -f docker-compose.yaml stop # Stops the conatiners but does not delete them
+docker-compose -f docker-compose.yaml start # starts them
