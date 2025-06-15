@@ -1,5 +1,6 @@
 # Commands Used 
 docker build -t getip
+
 docker run -it getip 
 
 # Program in action 
