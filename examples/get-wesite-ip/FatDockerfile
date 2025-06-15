@@ -7,4 +7,4 @@ RUN apt update && \
 
 COPY get-website-ip.py /apps/
 
-CMD ["python3", "get-website-ip.py"
+CMD ["python3", "get-website-ip.py"]
