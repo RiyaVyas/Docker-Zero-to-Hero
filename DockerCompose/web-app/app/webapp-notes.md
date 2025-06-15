@@ -27,5 +27,26 @@ export MONGO_DB_USER=admin
 And finally -
 ![alt text](image.png)
 
-# To see all the environment variables in your windows system - 
-gci Env:
+To see all the environment variables in your windows system - 
+    gci Env:
+
+
+Use images from docker hub
+//Build your app container and push the image to dockerhub in your repo
+    docker build -t riyavyas7/docker-compose-demo:1 .
+    docker login
+    docker push riyavyas7/docker-compose-demo:1
+
+![alt text](image-1.png)
+
+Now ww will use this in our docker compose file.
+  my-app :
+    image: riyavyas7/docker-compose-demo:1
+    ports :
+      - 3000:3000
+    environment :
+      MONGO_DB_USERNAME: ${MONGO_DB_USER}
+      MONGO_DB_PWD: ${MONGO_DB_PASS}
+
+Inspecting the docker conatiner for my-app :
+	"Image": "riyavyas7/docker-compose-demo:1"

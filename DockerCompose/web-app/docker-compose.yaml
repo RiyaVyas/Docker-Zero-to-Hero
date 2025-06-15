@@ -1,6 +1,6 @@
 services :
   my-app :
-    build: .
+    image: riyavyas7/docker-compose-demo:1
     ports :
       - 3000:3000
     environment :
