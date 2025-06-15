@@ -15,12 +15,12 @@ Create a bridge newtork
   docker network create mongo-network 
 
   docker network ls
->PS C:\Users\riyav\OneDrive\Documents\RV\Devops\Docker> docker network ls
->NETWORK ID     NAME            DRIVER    SCOPE
->f2cb9ee89484   bridge          bridge    local
->b8c3edd73335   host            host      local
->4bb490beee99   mongo-network   bridge    local
->a4a3076f7888   none            null      local
+>PS C:\Users\riyav\OneDrive\Documents\RV\Devops\Docker> docker network ls  
+>NETWORK ID     NAME            DRIVER    SCOPE  
+>f2cb9ee89484   bridge          bridge    local  
+>b8c3edd73335   host            host      local  
+>4bb490beee99   mongo-network   bridge    local  
+>a4a3076f7888   none            null      local  
 
 Docker run command to start a mongo DB container
   docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin --network mongo-network --name mongodb mongo  
@@ -29,10 +29,10 @@ Docker run command to start a mongo express conatiner
 A mongo express conatiner is a UI for mongo DB. It serves no purpose without having the actual mongo DB server in the first place.
   docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_SERVER=mongodb -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=admin --network mongo-network --name mongo-express mongo-express
 
->docker ps 
->CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS                      NAMES
->eaff914302e5   mongo-express   "/sbin/tini -- /dock…"   11 minutes ago   Up 11 minutes   0.0.0.0:8081->8081/tcp     mongo-express
->c0924ebd48c0   mongo           "docker-entrypoint.s…"   16 minutes ago   Up 16 minutes   0.0.0.0:27017->27017/tcp   mongodb
+>docker ps   
+>CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS                      NAMES  
+>eaff914302e5   mongo-express   "/sbin/tini -- /dock…"   11 minutes ago   Up 11 minutes   0.0.0.0:8081->8081/tcp     mongo-express  
+>c0924ebd48c0   mongo           "docker-entrypoint.s…"   16 minutes ago   Up 16 minutes   0.0.0.0:27017->27017/tcp   mongodb  
 
 Mongo express running on port 8081 - 
 ![alt text](image.png)
@@ -41,11 +41,11 @@ To get the id and password, check the mongo-express conatiner logs
 
   docker logs eaff914302e5
 
->Welcome to mongo-express 1.0.2
->------------------------
->Mongo Express server listening at http://0.0.0.0:8081
->Server is open to allow connections from anyone (0.0.0.0)
->basicAuth credentials are "admin:pass", it is recommended you change this in your >config.js!
+>Welcome to mongo-express 1.0.2  
+>------------------------  
+>Mongo Express server listening at http://0.0.0.0:8081  
+>Server is open to allow connections from anyone (0.0.0.0)  
+>basicAuth credentials are "admin:pass", it is recommended you change this in your >config.js!  
 
 Images in Docker desktop 
 ![alt text](image-1.png)
