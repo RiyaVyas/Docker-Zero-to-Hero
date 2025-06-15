@@ -14,3 +14,18 @@ docker-compose -f docker-compose.yaml up -d
 3. Make sure the name of your db and collection name matches on the mongo express with what you have in the server.js file
 let databaseName = "my_db";
 let collectionName = "my_collection";
+
+4. To note store credentials in the compose files, use variables instead.
+//For windows, export does not work so you need to pass them as environment variable like this in the terminal - 
+PS C:\Users\riyav\OneDrive\Documents\RV\Devops\Docker\Docker-Zero-to-Hero> $env:MONGO_DB_PASS = "admin"
+PS C:\Users\riyav\OneDrive\Documents\RV\Devops\Docker\Docker-Zero-to-Hero> $env:MONGO_DB_USER = "admin"
+
+//For ubuntu/linux
+export MONGO_DB_PASS=admin
+export MONGO_DB_USER=admin
+
+And finally -
+![alt text](image.png)
+
+# To see all the environment variables in your windows system - 
+gci Env:

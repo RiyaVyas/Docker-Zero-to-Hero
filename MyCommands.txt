@@ -154,3 +154,7 @@ time docker run --rm hello-world
 alias dps='docker ps --format "table {{.Names}}\\t{{.Status}}\\t{{.Image}}"'
 alias drm='docker rm $(docker ps -a -q)'
 alias dclean='docker system prune -a --volumes'
+
+
+# To see all the environment variables in your windows system - 
+gci Env:
