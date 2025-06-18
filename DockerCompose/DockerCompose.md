@@ -45,7 +45,7 @@ To get the id and password, check the mongo-express conatiner logs
 >------------------------  
 >Mongo Express server listening at http://0.0.0.0:8081  
 >Server is open to allow connections from anyone (0.0.0.0)  
->basicAuth credentials are "admin:pass", it is recommended you change this in your >config.js!  
+>basicAuth credentials are "admin:pass", it is recommended you change this in your >config.js!    
 
 Images in Docker desktop 
 ![alt text](image-1.png)
